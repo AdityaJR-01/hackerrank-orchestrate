@@ -1,0 +1,18 @@
+# Final prediction path (code/main.py, code/policy_engine.py):
+# Python 3.11+ standard library only — no third-party packages are required
+# to regenerate output.csv or run the evaluation.
+
+# Optional experimental LLM extraction harness (code/llm_harness.py,
+# code/tx_engine.py, code/check_free_models.py, code/test_dry_run.py).
+# Not imported by the deterministic engine; install only if experimenting
+# with model-based multimodal extraction.
+openai
+pydantic
+python-dotenv
+pillow
+faster-whisper
+rapidocr-onnxruntime
+pymupdf
+rank-bm25
+pandas
+httpx

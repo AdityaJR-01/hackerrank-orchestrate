@@ -1,0 +1,17 @@
+# Runtime caches and local tooling
+cache/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.venv/
+venv/
+
+# Build artifacts
+code.zip
+
+# Local log reconstruction scratch (log.txt itself is tracked and submitted)
+log_reconstruction_draft.md
+
+# OS files
+.DS_Store
