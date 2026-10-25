@@ -6,13 +6,13 @@
 # code/tx_engine.py, code/check_free_models.py, code/test_dry_run.py).
 # Not imported by the deterministic engine; install only if experimenting
 # with model-based multimodal extraction.
-openai
-pydantic
-python-dotenv
-pillow
-faster-whisper
-rapidocr-onnxruntime
-pymupdf
-rank-bm25
-pandas
-httpx
+# openai
+# pydantic
+# python-dotenv
+# pillow
+# faster-whisper
+# rapidocr-onnxruntime
+# pymupdf
+# rank-bm25
+# pandas
+# httpx

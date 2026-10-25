@@ -4,7 +4,7 @@
 
 - **Command:** `python3 code/main.py` (equivalent: `python3 code/policy_engine.py --test`)
 - **Dataset:** all 518 requests in `dataset/deletion_requests.csv` (plus 32 public sample cases used for scoring)
-- **Runtime:** standard Python 3.11 standard library only; no network access, no API keys, no third-party packages required
+- **Runtime:** Python 3.11+ standard library only (tested on Python 3.14.7); no network access, no API keys, no third-party packages required
 - **Determinism:** identical inputs produce byte-identical `output.csv` across reruns (verified by repeated full runs)
 
 ## Model providers and model names

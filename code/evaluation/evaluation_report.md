@@ -29,7 +29,7 @@ python3 code/validate_and_evaluate.py --output output.csv --input dataset/deleti
 Every remaining discrepancy is a recall-side **missing** verification step; the engine emits zero wrong statuses and zero extraneous steps. Two participant-data limits cause them:
 
 1. **Null-identifier analytics in parallel readback/export batches** (cases 03, 21, 25-28): the records contain no email, user id, phone, or hash, and parallel deletion runs interleave at the same minute (the stage order even reverses between batches, e.g. 2026-08-30), so no grounded attribution exists. The engine deliberately leaves them unclaimed rather than guess.
-2. **Unrecoverable retained-record ids** (cases 18, 20): `audit_record_6645` and `audit_record_5569` appear in no participant-visible file or activity row. Case 09's `audit_record_4902` is visible only in evidence captured after its `audit_at`, which §6.6 forbids citing; the future-work verification step therefore cannot be grounded.
+2. **Unrecoverable retained-record ids** (cases 18, 20): `audit_record_6645` and `audit_record_5569` appear in no participant-visible file or activity row.
 
 ## 3. Additional Custom Evaluation Cases Created
 Six team-created cases are implemented as executable assertions in `run_custom_cases.py` and documented in `custom_cases.md`. They cover non-deletion intent, the post-`audit_at` evidence cutoff, failover-replica drift, historical-identifier resolution, policy retention (rule_12), and account-tombstone redaction (rule_15). Current result: **6/6 PASS**.
@@ -50,7 +50,7 @@ PYTHONPATH=code python3 code/evaluation/run_custom_cases.py
 | 7 | Hand-crafted profiles had no absence proof | Rows absent from sparse extracts prove nothing | Dedicated full-profile snapshot `evidence_54` used for forced `account_001..010` absence; generic covering snapshots otherwise |
 | 8 | Non-deletion messages (unsubscribe, export, correction) risked false audits | Multilingual intent surface | Regex intent gate over explicit negation phrases; exactly the 10 `CLASSIFY_REQUEST` cases return `NOT_APPLICABLE` with `[]` |
 | 9 | Statuses trusted workflow claims (`reported_status`/`reported_result`) | Claims are not evidence | Status is derived solely from point-in-time evidence state against `deletion_rules.csv`; 32/32 gold statuses matched |
-| 10 | Parallel-batch ambiguity risked wrong (precision-hurting) steps | Private generator truth not participant-visible | Conservative recall-only misses preferred over speculative assignments; zero extraneous steps on all 32 samples |
+| 10 | Parallel-batch ambiguity risked wrong (precision-hurting) steps | Ground truth for those ids is not derivable from the supplied data | Conservative recall-only misses preferred over speculative assignments; zero extraneous steps on all 32 samples |
 
 ## 5. Methodology and Scope
 - **Deterministic only.** No model calls are made in the prediction path; reruns are byte-identical. See `usage_report.md` for the zero-token accounting.
